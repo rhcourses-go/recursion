@@ -20,3 +20,22 @@ func ExampleFactorial() {
 	// 362880
 	// 3628800
 }
+
+// ExampleFactorialIter berechnet die Fakultäten von 0 bis 10 und gibt sie aus.
+func ExampleFactorialIter() {
+	for i := 0; i <= 10; i++ {
+		fmt.Println(FactorialIter(i))
+	}
+	// Output:
+	// 1
+	// 1
+	// 2
+	// 6
+	// 24
+	// 120
+	// 720
+	// 5040
+	// 40320
+	// 362880
+	// 3628800
+}

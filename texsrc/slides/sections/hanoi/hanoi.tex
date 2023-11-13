@@ -1,0 +1,167 @@
+\begin{fframe}
+\begin{block}{Aufgabe: Bewege einen Turm aus Spielsteinen von A nach C}
+\end{block}
+\vspace{-1em}
+\begin{block}{Gegeben:}
+	\begin{itemize}
+		\item Spielsteine unterschiedlicher Größe.
+		\item Drei Stellen \alert{A}, \alert{B} und \alert{C}, an denen Spielsteine liegen können.
+	\end{itemize}
+\end{block}
+\vspace{-1em}
+	\begin{block}{Spielregeln:}
+		\begin{enumerate}
+			\item Die Steine werden einzeln bewegt.
+			\item Es wird niemals ein größerer Stein auf einen kleineren gelegt.
+		\end{enumerate}
+	\end{block}
+\vspace{-1em}
+\begin{block}<2->{Beispiel mit 3 Steinen:}
+	\begin{center}
+	\begin{tikzpicture}[node distance=0cm]
+		\tikzstyle{piece}=[rectangle,minimum height=0.5cm]
+		\tikzstyle{bpiece} = [piece,draw=black,minimum width=2cm,fill=yellow!25]
+		\tikzstyle{mpiece} = [piece,draw=black,minimum width=1.5cm,fill=blue!25]
+		\tikzstyle{spiece} = [piece,draw=black,minimum width=1cm,fill=red!25]
+		\tikzstyle{phantompiece} = [piece,minimum width=2cm]
+		
+		\node (A) {A};
+		\node (B) [right = 2cm of A] {B};
+		\node (C) [right = 2cm of B] {C};
+		
+		\node[phantompiece,above = of A] (A1) {};
+		\node[phantompiece,above = of A1] (A2) {};
+		\node[phantompiece,above = of A2] (A3) {};
+		
+		\node[phantompiece,above = of B] (B1) {};
+		\node[phantompiece,above = of B1] (B2) {};
+		\node[phantompiece,above = of B2] (B3) {};
+		
+		\node[phantompiece,above = of C] (C1) {};
+		\node[phantompiece,above = of C1] (C2) {};
+		\node[phantompiece,above = of C2] (C3) {};
+		
+		\only<2>{\node[spiece] (s) at (A3) {};}
+		\only<2-3>{\node[mpiece] (m) at (A2) {};}
+		\only<2-5>{\node[bpiece] (b) at (A1) {};}
+		\only<3-4>{\node[spiece] (s) at (C1) {};}
+		\only<4-7>{\node[mpiece] (m) at (B1) {};}
+		\only<5-6>{\node[spiece] (s) at (B2) {};}
+		\only<6->{\node[bpiece] (b) at (C1) {};}
+		\only<7-8>{\node[spiece] (s) at (A1) {};}
+		\only<8->{\node[mpiece] (m) at (C2) {};}
+		\only<9->{\node[spiece] (s) at (C3) {};}
+	\end{tikzpicture}
+	\end{center}
+\end{block}
+\end{fframe}
+
+\begin{fframe}
+	\begin{block}{Frage: Wie bewegt man einen Turm der Höhe $h$ von A nach C?}
+	\end{block}
+	\begin{block}<2->{Naive Antwort:}
+		\begin{enumerate}
+			\item Bewege alle bis auf die letzte Platte von A nach B
+			\item Bewege die letzte Platte von A nach C
+			\item Bewege den Turm von B nach C
+		\end{enumerate}
+	\end{block}
+	\begin{block}<3->{Überraschung: \alert{So naiv ist das gar nicht!}}
+		\begin{itemize}
+			\item Wir konstruieren einen Algorithmus auf Basis dieser Vorgehensweise.
+		\end{itemize}
+	\end{block}
+\end{fframe}
+
+\newcommand{\hanoipath}{\srcbase/hanoi/hanoi.go}
+
+\begin{fframe}
+\begin{block}{Wir definieren stückweise eine Funktion, die das Problem löst.}
+	\begin{itemize}
+	\item Bewegen einer einzelnen Platte:
+	\inputsrcfilemarker{Move}{\hanoipath}
+	\end{itemize}
+\end{block}
+\end{fframe}
+
+\begin{fframe}
+\begin{block}{Wir definieren stückweise eine Funktion, die das Problem löst.}
+	\begin{itemize}
+	\item Bewegen eines Turms der Höhe $1$:
+	\inputsrcfilemarker{Hanoi1}{\hanoipath}
+	\end{itemize}
+\end{block}
+\end{fframe}
+
+\begin{fframe}
+\begin{block}{Konstruktion der Hanoi-Lösung (Fortsetzung)}
+	\begin{itemize}
+	\item Bewegen eines Turms der Höhe $2$:
+	\inputsrcfilemarker{Hanoi2}{\hanoipath}
+	\end{itemize}
+\end{block}
+\begin{block}{}
+\end{block}
+\end{fframe}
+
+\begin{fframe}
+\begin{block}{Konstruktion der Hanoi-Lösung (Fortsetzung)}
+	\begin{itemize}
+	\item Bewegen eines Turms der Höhe $3$:
+	\inputsrcfilemarker{Hanoi3}{\hanoipath}
+	\end{itemize}
+\end{block}
+\begin{block}{}
+\end{block}
+\end{fframe}
+
+\begin{fframe}
+\begin{block}{Konstruktion der Hanoi-Lösung (Fortsetzung)}
+	\begin{itemize}
+	\item Bewegen eines Turms der Höhe $4$:
+	\inputsrcfilemarker{Hanoi4}{\hanoipath}
+	\end{itemize}
+\end{block}
+\begin{block}{Laaaaaaaaaa...}
+\end{block}
+\end{fframe}
+
+\begin{fframe}
+	\begin{block}{Konstruktion der Hanoi-Lösung (Fortsetzung)}
+		\begin{itemize}
+		\item Bewegen eines Turms der Höhe $5$:
+		\inputsrcfilemarker{Hanoi5}{\hanoipath}
+		\end{itemize}
+	\end{block}
+	\begin{block}{...aaaaaaang...}
+	\end{block}
+\end{fframe}
+
+\begin{fframe}
+	\begin{block}{Konstruktion der Hanoi-Lösung (Fortsetzung)}
+		\begin{itemize}
+		\item Bewegen eines Turms der Höhe $6$:
+		\inputsrcfilemarker{Hanoi6}{\hanoipath}
+		\end{itemize}
+	\end{block}
+	\begin{block}{...weeeeilig}
+	\end{block}
+	\end{fframe}
+
+\begin{fframe}
+\begin{block}{Beobachtungen:}
+	\begin{itemize}
+		\item Die Funktionen \code{hanoi2}, \code{hanoi3}, \code{hanoi4}, \ldots sind alle gleich.
+		\item Beim Aufruf wird nur die Zahl reduziert und dann wieder das Gleiche gemacht.
+		\item Nur bei \code{hanoi1} wird kein \code{hanoi0} aufgerufen.
+	\end{itemize}
+\end{block}
+\begin{block}<2->{Schlussfolgerung: Wenn die Höhe als Argument übergeben wird, können wir alles in eine Funktion schreiben.}
+\end{block}
+\end{fframe}
+
+\begin{fframe}
+\begin{block}{Rekursive Hanoi-Lösung}
+	\inputsrcfilemarker{HanoiComplete}{\hanoipath}
+\end{block}
+\end{fframe}
