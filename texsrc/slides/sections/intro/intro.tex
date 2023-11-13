@@ -1,0 +1,81 @@
+\begin{fframe}
+    \begin{block}{Was gibt diese Funktion für $n=3$ aus?}
+        \inputsrcfilemarker{CountDown}{\srcbase/countdown/countdown.go}
+    \end{block}
+\end{fframe}
+
+\begin{fframe}%[fragile]
+    \begin{block}{Beispiel: Addition als Gleichungen spezifiziert}
+        \vspace{-1.5em}
+        \begin{align*}
+            {\only<14-15>{\color{blue}}x} + 0 		&= x \\
+            {\only<4-12>{\color{blue}}x} + s({\only<4-12>{\color{orange}}y}) 	&= s(x + y)
+        \end{align*}
+    \end{block}
+    \vspace{-1em}
+    \begin{block}<2-15>{Anwendung der Gleichungen:}
+        \vspace{-1.5em}
+        \begin{align*}
+        \onslide<3->{	  & 		& {\only<4-5>{\color{blue}}s(s(0))} 		&+ s({\only<4-5>{\color{orange}}s(s(0))})					 						} \\
+        \onslide<5->{	  s&( 		& {\only<5,7,8>{\color{blue}}s(s(0))} 		&+ {\only<5>{\color{orange}}s({\only<7-8>{\color{orange}}s(0)})} 	& &)			} \\
+        \onslide<8->{	  s(s&( 	& {\only<8,10,11>{\color{blue}}s(s(0))} 	&+ {\only<8>{\color{orange}}s({\only<10-11>{\color{orange}}0})} 	& &))			} \\
+        \onslide<11->{	  s(s(s&(	& {\only<11,13,14>{\color{blue}}s(s(0))} 	&+ {\only<11>{\color{orange}}0} 									& &)))			} \\
+        \onslide<14->{	  s(s(s&(	& {\only<14>{\color{blue}}s(s(0))} 		& \qquad															& &)))			}
+        \end{align*}
+    \end{block}
+\end{fframe}
+
+\begin{fframe}
+    \begin{block}{Rekursive Addition als \code{Go}-Programm:}
+        \inputsrcfilemarker{Add1}{\srcbase/calculations/calculations.go}
+    \end{block}
+\end{fframe}
+
+\begin{fframe}
+    \begin{block}{Alternative Version (\alert{Tail-Recursion}):}
+        \inputsrcfilemarker{Add2}{\srcbase/calculations/calculations.go}
+    \end{block}
+\end{fframe}
+
+\begin{fframe}
+    \begin{block}{Wozu Rekursion?}
+    \begin{itemize}
+        \item Manches lässt sich kürzer und eleganter schreiben.
+        \item<2-> Beispiel Fakultät:
+            \begin{align*}
+                fac(n) &= \prod_{i=1}^{n}{i} & &\text{oder} & &\begin{aligned} fac(0)& = 1 \\ fac(n) &= n \cdot fac(n-1) \end{aligned}
+            \end{align*}
+        \item<3-> Als iteratives \code{Go}-Programm:
+        \inputsrcfilemarker{FactorialIter}{\srcbase/factorial/factorial.go}
+    \end{itemize}
+    \end{block}
+\end{fframe}
+
+\begin{fframe}
+    \begin{block}{Wozu Rekursion?}
+    \begin{itemize}
+        \item Manches lässt sich kürzer und eleganter schreiben.
+        \item Beispiel Fakultät:
+            \begin{align*}
+                fac(n) &= \prod_{i=1}^{n}{i} & &\text{oder} & &\begin{aligned} fac(0)& = 1 \\ fac(n) &= n \cdot fac(n-1) \end{aligned}
+            \end{align*}
+        \item Als rekursives \code{Go}-Programm:
+        \inputsrcfilemarker{Factorial}{\srcbase/factorial/factorial.go}
+    \end{itemize}
+    \end{block}
+\end{fframe}
+
+\begin{fframe}
+    \begin{block}{Schema für rekursive Definitionen}
+    \begin{itemize}
+        \item Ein oder mehrere Basisfälle (Rekursionsanfang, Anker).
+        \item Ein oder mehrere rekursive Aufrufe (Rekursionsschritt).
+    \end{itemize}
+    \end{block}
+    \begin{block}<2->{Vergleich mit \code{while}-Schleifen}
+    \begin{itemize}
+        \item Abbruchbedingung entspricht Rekursionsanfang.
+        \item Schleifenrumpf entspricht Rekursionsschritt.
+    \end{itemize}
+    \end{block}
+\end{fframe}

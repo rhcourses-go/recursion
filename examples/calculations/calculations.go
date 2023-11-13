@@ -10,6 +10,7 @@ package calculations
 */
 
 // Add1 berechnet die Summe von x und y.
+// begin:Add1
 func Add1(x, y int) int {
 
 	// Gleichungen für die Addition:
@@ -22,7 +23,10 @@ func Add1(x, y int) int {
 	return Add1(x, y-1) + 1
 }
 
+// end:Add1
+
 // Add2 berechnet die Summe von x und y.
+// begin:Add2
 func Add2(x, y int) int {
 
 	// Gleichungen für die Addition:
@@ -35,7 +39,10 @@ func Add2(x, y int) int {
 	return Add2(x+1, y-1)
 }
 
+// end:Add2
+
 // Power berechnet x hoch n.
+// begin:Power
 func Power(x, n int) int {
 
 	// Gleichungen für die Potenz:
@@ -47,3 +54,5 @@ func Power(x, n int) int {
 	}
 	return Power(x, n-1) * x
 }
+
+// end:Power
